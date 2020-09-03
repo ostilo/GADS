@@ -160,8 +160,7 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.button2:
                 if (isConnectionActive()) {
-                    openDecisionDailog(2);
-                    // validateInputFields();
+                    validateInputFields();
                 } else {
                     Toast.makeText(this, getString(R.string.connection), Toast.LENGTH_SHORT).show();
                 }
