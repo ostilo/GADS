@@ -1,10 +1,10 @@
 package com.elkanah.gads;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -37,6 +37,7 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
     private AlertDialog bu;
     private Button tvYes;
     private ProgressBar progressBar;
+    private AlertDialog dialog;
 
 
     @Override
@@ -66,6 +67,12 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
         init();
+        constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                constraintLayout.setAlpha(1f);
+            }
+        });
     }
 
     private void init() {
@@ -114,7 +121,7 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
         LayoutInflater inflater = getLayoutInflater();
         View custom = inflater.inflate(R.layout.success_page, null);
         ImageView fromDecisionImage = custom.findViewById(R.id.imageView);
-        TextView tvDecisionMessage = findViewById(R.id.decision_msg);
+        TextView tvDecisionMessage = custom.findViewById(R.id.decision_msg_can);
         if (value == 1) {
             fromDecisionImage.setImageResource(R.drawable.ic_check);
             tvDecisionMessage.setText(R.string.success);
@@ -123,21 +130,15 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
             tvDecisionMessage.setText(R.string.failure);
         }
         buid.setView(custom);
-        final AlertDialog dialog = buid.create();
+        dialog = buid.create();
         dialog.show();
-        new CountDownTimer(3000, 1000) {
-
+        constraintLayout.setAlpha(0.5f);
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
-            public void onTick(long millisUntilFinished) {
-
+            public void onDismiss(final DialogInterface arg0) {
+                constraintLayout.setAlpha(1f);
             }
-
-            @Override
-            public void onFinish() {
-                dialog.dismiss();
-            }
-        }.start();
-
+        });
     }
 
     private void initiateFeilds() {
@@ -159,7 +160,8 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.button2:
                 if (isConnectionActive()) {
-                    validateInputFields();
+                    openDecisionDailog(2);
+                    // validateInputFields();
                 } else {
                     Toast.makeText(this, getString(R.string.connection), Toast.LENGTH_SHORT).show();
                 }

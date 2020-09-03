@@ -52,7 +52,6 @@ public class DataCentric {
 
     }
 
-
     public void gotoFetchDataSkill(List<SkillIQLeaders> learningLeaders, final MutableLiveData<List<SkillIQLeaders>> learningLeadersMutableLiveData, final MutableLiveData<String> isDecision) {
         ApiEndpointInterface apiService = RetrofitClientInstance.getRetrofitInstance().create(ApiEndpointInterface.class);
         final Gson gson = new Gson();
@@ -74,21 +73,25 @@ public class DataCentric {
         });
     }
 
-    public void gotoSubmitData(Entity rn, final MutableLiveData<String> isDecision) {
+    public void gotoSubmitData(Entity rn, final MutableLiveData<String> isDecision, String s, String toString, String string, String s1) {
         ApiEndpointInterface apiService = RetrofitClientInstance.getRetrofitInstance().create(ApiEndpointInterface.class);
-            Call<Entity> call = apiService.addLink(rn.EmailAddress,rn.Name,rn.LastName,rn.Link);
-            call.enqueue(new Callback<Entity>() {
+            Call<Void> call = apiService.addLink(s,toString,string,s1);
+       // Entity rn = new Entity(text2.toString(),text.toString(),text1.toString(),text3.toString(),);
+            call.enqueue(new Callback<Void>() {
                 @Override
-                public void onResponse(@NonNull Call<Entity> call, @NonNull Response<Entity> response) {
+                public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     if (response.code() == 200)
                     {
                         if(response.message().equals("OK")){
                             isDecision.postValue(response.message());
                         }
                     }
+                    else {
+                        isDecision.postValue("NO");
+                    }
                 }
                 @Override
-                public void onFailure(@NonNull Call<Entity> call, @NonNull Throwable t) {
+                public void onFailure(@NonNull Call<Void> call, @NonNull Throwable t) {
                     isDecision.postValue(t.getMessage());
                 }
             });

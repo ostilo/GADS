@@ -33,7 +33,7 @@ public class PageRepoitory {
       if(!TextUtils.isEmpty(text.toString()) && !TextUtils.isEmpty(text1.toString()) && !TextUtils.isEmpty(text2.toString()) && !TextUtils.isEmpty(text3.toString()))
       {
           Entity rn = new Entity(text2.toString(),text.toString(),text1.toString(),text3.toString());
-          mProxy.gotoSubmitData(rn, isDecision);
+          mProxy.gotoSubmitData(rn, isDecision,text2.toString(),text.toString(),text1.toString(),text3.toString());
           isDecision.postValue("su");
       }
       else {
