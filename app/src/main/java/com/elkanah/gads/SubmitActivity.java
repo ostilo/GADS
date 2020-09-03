@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
     private PageViewModel pageViewModel;
     private AlertDialog bu;
     private Button tvYes;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -78,8 +80,10 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
                 if (s != null) {
                     if (!TextUtils.isEmpty(s)) {
                         if (s.equals("OK")) {
+                            progressBar.setVisibility(View.INVISIBLE);
                             openDecisionDailog(1);
                         } else {
+                            progressBar.setVisibility(View.INVISIBLE);
                             openDecisionDailog(2);
                         }
                     }
@@ -92,8 +96,13 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
             public void onChanged(String s) {
                 if (s != null) {
                     if (!TextUtils.isEmpty(s)) {
-                        bu.dismiss();
-                        Toast.makeText(getApplicationContext(), R.string.empty, Toast.LENGTH_SHORT).show();
+                        if (s.equals("f")) {
+                            bu.dismiss();
+                            Toast.makeText(getApplicationContext(), R.string.empty, Toast.LENGTH_SHORT).show();
+                        } else if (s.equals("su")) {
+                            progressBar.setVisibility(View.VISIBLE);
+                            bu.dismiss();
+                        }
                     }
                 }
             }
@@ -141,6 +150,7 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
         tvLastName = findViewById(R.id.last_name);
         tvEMail = findViewById(R.id.email_id);
         tvLink = findViewById(R.id.editText);
+        progressBar = findViewById(R.id.progressBar3);
 
     }
 

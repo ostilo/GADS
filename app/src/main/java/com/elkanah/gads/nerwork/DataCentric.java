@@ -87,7 +87,6 @@ public class DataCentric {
                         }
                     }
                 }
-
                 @Override
                 public void onFailure(@NonNull Call<Entity> call, @NonNull Throwable t) {
                     isDecision.postValue(t.getMessage());

@@ -34,6 +34,7 @@ public class PageRepoitory {
       {
           Entity rn = new Entity(text2.toString(),text.toString(),text1.toString(),text3.toString());
           mProxy.gotoSubmitData(rn, isDecision);
+          isDecision.postValue("su");
       }
       else {
           isDecision.postValue("f");
