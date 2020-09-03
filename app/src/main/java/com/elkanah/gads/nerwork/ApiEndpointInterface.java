@@ -18,12 +18,11 @@ public interface ApiEndpointInterface {
 
   @GET("api/hours")
   Call<List<LearningLeaders>> getLearningLeaders();
-  @FormUrlEncoded
 
   @POST("1FAIpQLSf9d1TcNU6zc6KR8bSEM41Z1g1zl35cwZr2xyjIhaMAz8WChQ/formResponse")
-  Call<Void> addLink(@Field("EmailAddress") String EmailAddress,
-                       @Field("Name") String Name,
-                       @Field("LastName") String LastName,
-                       @Field("Linktoproject") String Link);
-
+  @FormUrlEncoded
+  Call<Void> addLink(@Field("entry.1824927963") String EmailAddress,
+                       @Field("entry.1877115667") String Name,
+                       @Field("entry.2006916086") String LastName,
+                       @Field("entry.284483984") String Link);
 }

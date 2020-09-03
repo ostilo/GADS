@@ -94,6 +94,9 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
                             openDecisionDailog(2);
                         }
                     }
+                    else {
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
                 }
             }
         });
@@ -152,7 +155,6 @@ public class SubmitActivity extends AppCompatActivity implements View.OnClickLis
         tvEMail = findViewById(R.id.email_id);
         tvLink = findViewById(R.id.editText);
         progressBar = findViewById(R.id.progressBar3);
-
     }
 
     @Override

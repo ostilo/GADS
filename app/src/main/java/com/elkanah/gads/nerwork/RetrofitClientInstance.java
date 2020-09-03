@@ -6,8 +6,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RetrofitClientInstance {
   private static Retrofit retrofit;
-  public static final String BASE_URL = "https://docs.google.com/forms/d/e/";
-//https://gadsapi.herokuapp.com/
+  public static final String BASE_URL = "https://gadsapi.herokuapp.com/";
+
   public static Retrofit getRetrofitInstance () {
     if (retrofit == null) {
       retrofit = new Retrofit.Builder()
@@ -18,4 +18,5 @@ public class RetrofitClientInstance {
     }
     return retrofit;
   }
+
 }

@@ -74,7 +74,7 @@ public class DataCentric {
     }
 
     public void gotoSubmitData(Entity rn, final MutableLiveData<String> isDecision, String s, String toString, String string, String s1) {
-        ApiEndpointInterface apiService = RetrofitClientInstance.getRetrofitInstance().create(ApiEndpointInterface.class);
+        ApiEndpointInterface apiService = RetrofitClientInstance2.getRetrofitInstance().create(ApiEndpointInterface.class);
             Call<Void> call = apiService.addLink(s,toString,string,s1);
        // Entity rn = new Entity(text2.toString(),text.toString(),text1.toString(),text3.toString(),);
             call.enqueue(new Callback<Void>() {
