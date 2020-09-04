@@ -82,9 +82,7 @@ public class DataCentric {
                 public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                     if (response.code() == 200)
                     {
-                        if(response.message().equals("OK")){
-                            isDecision.postValue(response.message());
-                        }
+                            isDecision.postValue("OK");
                     }
                     else {
                         isDecision.postValue("NO");
